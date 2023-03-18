@@ -140,7 +140,7 @@ public class AccessibilityCongressController {
                     attendant.saveAttendant();
                     event.decreaseSlotAvailability(eventId);
                     updateLabels();
-                    alert("El evento fue guardado correctamente", true);
+                    alert("El evento fue guardado exitosamente", true);
                 } catch (SQLException sqlException) {
                     alert("No se pudo registrar el asistente", false);
                 }
