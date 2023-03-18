@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="530.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.uv.fei.gui.AccessibilityCongressController">
+    <padding>
+        <Insets bottom="20.0" />
+    </padding>
+   <TabPane prefHeight="552.0" prefWidth="745.0" tabClosingPolicy="UNAVAILABLE">
+     <tabs>
+       <Tab text="Registrar Evento">
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="745.0">
+                  <children>
+                     <Label layoutX="14.0" layoutY="14.0" text="Registrar Evento">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <GridPane alignment="CENTER" layoutX="71.0" layoutY="70.0" prefHeight="309.0" prefWidth="560.0">
+                       <columnConstraints>
+                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="233.3333740234375" minWidth="10.0" prefWidth="155.33333333333334" />
+                         <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="337.33333333333326" minWidth="10.0" prefWidth="324.66666666666663" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                        
+                                        <Label fx:id="labelEventName" prefHeight="17.0" prefWidth="131.0" text="Nombre del Evento:" />
+                            <Label fx:id="labelEventSpeaker" prefHeight="19.0" prefWidth="154.0" text="Nombre del impartidor:" GridPane.rowIndex="1" />
+                            <Label fx:id="labelEventDuration" prefHeight="24.0" text="Duración:" GridPane.rowIndex="2" />
+                            <Label fx:id="labelEventLocation" prefHeight="24.0" text="Lugar:" GridPane.rowIndex="3" />
+                            <Label fx:id="labelEventDate" prefHeight="24.0" text="Fecha:" GridPane.rowIndex="4" />
+                            <Label fx:id="labelEventType" prefHeight="24.0" text="Tipo:" GridPane.rowIndex="6" />
+                           <Label fx:id="labelEventTime" text="Hora:" GridPane.rowIndex="5" />
+                            <TextField fx:id="textFieldEventName" prefHeight="24.0" prefWidth="241.0" GridPane.columnIndex="1">
+                              <GridPane.margin>
+                                 <Insets left="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <TextField fx:id="textFieldEventSpeaker" prefHeight="24.0" prefWidth="241.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <GridPane.margin>
+                                 <Insets left="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <children>
+                                 <TextField fx:id="textFieldEventDuration" prefHeight="24.0" prefWidth="50.0">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                                 <Label text="(Horas)">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <Label text="Cupos:">
+                                    <padding>
+                                       <Insets left="15.0" />
+                                    </padding>
+                                 </Label>
+                                 <TextField fx:id="textFieldEventSlots" prefHeight="24.0" prefWidth="69.0" promptText="Max. 30">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                           </HBox>
+                           <TextField fx:id="textFieldEventLocation" prefHeight="24.0" prefWidth="241.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <GridPane.margin>
+                                 <Insets left="5.0" />
+                              </GridPane.margin>
+                           </TextField>
+                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <children>
+                                 <DatePicker fx:id="datePicker" onAction="#getDate" prefHeight="24.0" prefWidth="185.0" promptText="Selecciona una fecha">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </DatePicker>
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <children>
+                                 <TextField fx:id="textFieldEventTime" prefHeight="24.0" prefWidth="80.0">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                                 <Label text="HH:MM:SS">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </Label>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets />
+                              </GridPane.margin>
+                           </HBox>
+                           <ComboBox fx:id="comboBoxEventType" prefHeight="24.0" prefWidth="237.0" promptText="Seleccionar tipo de evento" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <GridPane.margin>
+                                 <Insets left="5.0" />
+                              </GridPane.margin>
+                           </ComboBox>
+                        </children>
+                     </GridPane>
+                     <ButtonBar layoutX="531.0" layoutY="424.0" prefHeight="40.0" prefWidth="200.0">
+                       <buttons>
+                            <Button onAction="#addEvent" text="Registrar Evento" />
+                       </buttons>
+                     </ButtonBar>
+                     <Line endX="553.0" endY="-1.52587890625E-5" layoutX="177.0" layoutY="34.0" startX="-162.99998474121094" startY="-1.52587890625E-5" AnchorPane.topAnchor="43.0" />
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+       <Tab text="Registrar Asistente">
+         <content>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="514.0" prefWidth="745.0">
+                  <children>
+                     <Label layoutX="16.0" layoutY="14.0" text="Registrar Asistente">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <Line endX="535.3333740234375" layoutX="189.0" layoutY="42.0" startX="-174.66664123535156" AnchorPane.topAnchor="43.0" />
+                     <Label layoutX="81.0" layoutY="55.0" text="Nombre del evento">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Label>
+                     <HBox alignment="CENTER" layoutX="5.0" layoutY="78.0" prefHeight="198.0" prefWidth="725.0" spacing="20.0">
+                        <children>
+                           <ListView fx:id="listViewEvents" onMouseClicked="#handleListViewClick" prefHeight="188.0" prefWidth="246.0" />
+                           <GridPane prefHeight="188.0" prefWidth="448.0">
+                             <columnConstraints>
+                               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="252.33338419596353" minWidth="10.0" prefWidth="199.00004069010416" />
+                               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="264.0000305175781" minWidth="10.0" prefWidth="234.33329264322916" />
+                             </columnConstraints>
+                             <rowConstraints>
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                             </rowConstraints>
+                              <children>
+                                 <Label text="Nombre de quien imparte:" />
+                                 <Label text="Duración:" GridPane.rowIndex="1" />
+                                 <Label text="Lugar:" GridPane.rowIndex="2" />
+                                 <Label text="Fecha:" GridPane.rowIndex="3" />
+                                 <Label text="Hora:" GridPane.rowIndex="4" />
+                                 <Label text="Tipo de evento:" GridPane.rowIndex="5" />
+                                 <Label fx:id="labelEditEventSpeaker" text="---" GridPane.columnIndex="1">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="labelEditEventDuration" text="---" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="labelEditEventLocation" text="---" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="labelEditEventDate" text="---" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="labelEditEventTime" text="---" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="labelEditEventType" text="---" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label text="Cupo:" GridPane.rowIndex="6" />
+                                 <Label fx:id="labelEditEventSlots" text="---" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font>
+                                    <GridPane.margin>
+                                       <Insets left="5.0" />
+                                    </GridPane.margin>
+                                 </Label>
+                              </children>
+                           </GridPane>
+                        </children>
+                        <padding>
+                           <Insets left="28.0" />
+                        </padding>
+                     </HBox>
+                     <Line endX="590.0" layoutX="123.0" layoutY="290.0" startX="-100.0" />
+                     <VBox alignment="CENTER" layoutX="12.0" layoutY="290.0" prefHeight="133.0" prefWidth="713.0" spacing="10.0">
+                        <children>
+                           <HBox alignment="CENTER" prefHeight="50.0" prefWidth="714.0" spacing="6.0">
+                              <children>
+                                 <Label text="Nombre:" />
+                                 <TextField fx:id="textFieldAttendantName" prefHeight="24.0" prefWidth="130.0" />
+                                 <Label text="Apellido Paterno:" />
+                                 <TextField fx:id="textFieldAttendantLastName" prefHeight="24.0" prefWidth="130.0" />
+                                 <Label text="Apellido Materno:" />
+                                 <TextField fx:id="textFieldAttendantSecondLastName" prefHeight="24.0" prefWidth="130.0" />
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="714.0" spacing="5.0">
+                              <children>
+                                 <Label text="Correo Electrónico:">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <TextField fx:id="textFieldAttendantEmail" prefHeight="24.0" prefWidth="208.0" />
+                                 <Label text="Evento seleccionado:">
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin></Label>
+                                 <Label fx:id="labelEditSelectedItem" text="---">
+                                    <font>
+                                       <Font name="System Bold" size="13.0" />
+                                    </font></Label>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                     <ButtonBar layoutX="531.0" layoutY="424.0" prefHeight="40.0" prefWidth="200.0">
+                       <buttons>
+                         <Button fx:id="buttonAddAttendant" mnemonicParsing="false" onAction="#addAttendant" text="Registrar Asistente" />
+                       </buttons>
+                     </ButtonBar>
+                  </children>
+               </AnchorPane>
+         </content>
+       </Tab>
+     </tabs>
+   </TabPane>
+</VBox>

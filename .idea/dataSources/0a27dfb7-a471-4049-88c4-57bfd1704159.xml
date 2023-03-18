@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="congreso@localhost">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.45">
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <ServerVersion>10.11.2</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="congreso">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <table id="4" parent="2" name="asistente">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <table id="5" parent="2" name="eventos">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_unicode_ci</CollationName>
+    </table>
+    <column id="6" parent="4" name="nombre">
+      <DasType>varchar(15)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="7" parent="4" name="apellidoPaterno">
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="8" parent="4" name="apellidoMaterno">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="9" parent="4" name="correoElectronico">
+      <DasType>varchar(40)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="10" parent="4" name="idEvento">
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="11" parent="4" name="idAsistente">
+      <AutoIncrement>2</AutoIncrement>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="12" parent="4" name="asistente_ibfk_1">
+      <ColNames>idEvento</ColNames>
+      <RefColNames>idEvento</RefColNames>
+      <RefTableName>eventos</RefTableName>
+    </foreign-key>
+    <index id="13" parent="4" name="PRIMARY">
+      <ColNames>idAsistente</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="14" parent="4" name="idEvento">
+      <ColNames>idEvento</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="15" parent="4" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="16" parent="5" name="idEvento">
+      <AutoIncrement>3</AutoIncrement>
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="17" parent="5" name="nombreEvento">
+      <DasType>varchar(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="18" parent="5" name="quienImparte">
+      <DasType>varchar(30)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="19" parent="5" name="duracion">
+      <DasType>int(11)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="20" parent="5" name="lugar">
+      <DasType>varchar(40)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="21" parent="5" name="fecha">
+      <DasType>date|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="22" parent="5" name="tipoEvento">
+      <DasType>varchar(8)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <index id="23" parent="5" name="PRIMARY">
+      <ColNames>idEvento</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="5" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
