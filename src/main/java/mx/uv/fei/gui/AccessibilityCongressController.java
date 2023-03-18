@@ -104,7 +104,7 @@ public class AccessibilityCongressController {
     @FXML
     protected void addEvent() {
         if (textFieldEventName.getText().isBlank() || textFieldEventSpeaker.getText().isBlank() || textFieldEventDuration.getText().isBlank() || textFieldEventLocation.getText().isBlank() || eventDate.isBlank() || textFieldEventTime.getText().isBlank() || comboBoxEventType.getValue().isBlank() || textFieldEventSlots.getText().isBlank() || Integer.parseInt(textFieldEventSlots.getText()) > 30 || Integer.parseInt(textFieldEventSlots.getText()) <= 0 || Integer.parseInt(textFieldEventSlots.getText()) <= 0) {
-            alert("Revise que los campos esten llenos correctamente", false);
+            alert("Revise que los campos sean correctos", false);
         } else {
             try {
                 event = new Event();
@@ -129,7 +129,7 @@ public class AccessibilityCongressController {
         Attendant attendant = new Attendant();
         if (listViewEvents.getSelectionModel().getSelectedItem() != null) {
             if (textFieldAttendantName.getText().isBlank() || textFieldAttendantLastName.getText().isBlank() || textFieldAttendantSecondLastName.getText().isBlank() || textFieldAttendantEmail.getText().isBlank() || Integer.parseInt(labelEditEventSlots.getText()) <= 0 || !attendant.isEmailValid(textFieldAttendantEmail.getText())) {
-                alert("Revise que los campos estén llenos correctamente", false);
+                alert("Revise que los campos sean correctos", false);
             } else {
                 try {
                     attendant.setAttendantName(textFieldAttendantName.getText());
