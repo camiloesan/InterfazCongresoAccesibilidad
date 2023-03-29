@@ -10,8 +10,6 @@ public class Attendant {
     private String attendantEmail;
     private int eventId;
 
-
-
     public boolean isEmailValid(String attendantEmail) {
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);

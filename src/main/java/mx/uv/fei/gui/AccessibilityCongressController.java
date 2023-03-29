@@ -7,11 +7,11 @@ import javafx.scene.control.*;
 import mx.uv.fei.logic.Attendant;
 import mx.uv.fei.logic.AttendantDAO;
 import mx.uv.fei.logic.Event;
+import mx.uv.fei.logic.EventDAO;
+
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class AccessibilityCongressController {
-    private String eventDate;
     private int eventId;
     private final static ObservableList<String> observableListCombo = FXCollections.observableArrayList("Platica", "Taller");
     Event event;
@@ -58,8 +58,13 @@ public class AccessibilityCongressController {
     @FXML
     private ComboBox<String> comboBoxEventType;
     @FXML
+    private void getDate() {
+        datePicker.getValue();
+    }
+    @FXML
     private void updateLabels() throws SQLException {
-        for(Event objectEvent : event.eventList(listViewEvents.getSelectionModel().getSelectedItem())) {
+        EventDAO eventDAO = new EventDAO();
+        for(Event objectEvent : eventDAO.getElementByName(listViewEvents.getSelectionModel().getSelectedItem())) {
             labelEditEventSpeaker.setText(objectEvent.getSpeakerName());
             labelEditEventDuration.setText(String.valueOf(objectEvent.getEventDuration()));
             labelEditEventLocation.setText(objectEvent.getEventLocation());
@@ -74,19 +79,14 @@ public class AccessibilityCongressController {
     @FXML
     private void updateListView() throws SQLException {
         listViewEvents.getItems().clear();
-        event = new Event();
-        for(Event objetoEvent : event.eventList()) {
-            listViewEvents.getItems().add(objetoEvent.getEventName());
+        EventDAO eventDAO = new EventDAO();
+        for(Event eventObject : eventDAO.getAllEvents()) {
+            listViewEvents.getItems().add(eventObject.getEventName());
         }
     }
     @FXML
     private void handleListViewClick() throws SQLException {
         updateLabels();
-    }
-    @FXML
-    private void getDate() {
-        LocalDate date = datePicker.getValue();
-        eventDate = date.toString();
     }
     @FXML
     private void alert(String message, boolean isSuccessful) {
@@ -103,20 +103,21 @@ public class AccessibilityCongressController {
     }
     @FXML
     protected void addEvent() {
-        if (textFieldEventName.getText().isBlank() || textFieldEventSpeaker.getText().isBlank() || textFieldEventDuration.getText().isBlank() || textFieldEventLocation.getText().isBlank() || eventDate.isBlank() || textFieldEventTime.getText().isBlank() || comboBoxEventType.getValue().isBlank() || textFieldEventSlots.getText().isBlank() || Integer.parseInt(textFieldEventSlots.getText()) > 30 || Integer.parseInt(textFieldEventSlots.getText()) <= 0 || Integer.parseInt(textFieldEventSlots.getText()) <= 0) {
+        if (textFieldEventName.getText().isBlank() || textFieldEventSpeaker.getText().isBlank() || textFieldEventDuration.getText().isBlank() || textFieldEventLocation.getText().isBlank() || datePicker.getValue().toString().isBlank() || textFieldEventTime.getText().isBlank() || comboBoxEventType.getValue().isBlank() || textFieldEventSlots.getText().isBlank() || Integer.parseInt(textFieldEventSlots.getText()) > 30 || Integer.parseInt(textFieldEventSlots.getText()) <= 0 || Integer.parseInt(textFieldEventSlots.getText()) <= 0) {
             alert("Revise que los campos sean correctos", false);
         } else {
             try {
                 event = new Event();
+                EventDAO eventDAO = new EventDAO();
                 event.setEventName(textFieldEventName.getText());
                 event.setSpeakerName(textFieldEventSpeaker.getText());
                 event.setEventDuration(Integer.parseInt(textFieldEventDuration.getText()));
                 event.setEventLocation(textFieldEventLocation.getText());
-                event.setEventDate(eventDate);
+                event.setEventDate(datePicker.getValue().toString());
                 event.setEventTime(textFieldEventTime.getText());
                 event.setEventType(comboBoxEventType.getValue());
                 event.setEventSlots(Integer.parseInt(textFieldEventSlots.getText()));
-                event.saveEvent();
+                eventDAO.addEvent(event);
                 updateLabels();
                 alert("El evento fue guardado correctamente", true);
             } catch (SQLException sqlException) {
@@ -132,13 +133,14 @@ public class AccessibilityCongressController {
                 alert("Revise que los campos sean correctos", false);
             } else {
                 try {
+                    EventDAO eventDAO = new EventDAO();
+                    AttendantDAO attendantDAO = new AttendantDAO();
                     attendant.setAttendantName(textFieldAttendantName.getText());
                     attendant.setAttendantLastName(textFieldAttendantLastName.getText());
                     attendant.setAttendantSecondLastName(textFieldAttendantSecondLastName.getText());
                     attendant.setAttendantEmail(textFieldAttendantEmail.getText());
                     attendant.setEventId(eventId);
-                    event.decreaseSlotAvailability(eventId);
-                    AttendantDAO attendantDAO = new AttendantDAO();
+                    eventDAO.decreaseEventSlotAvailability(eventId);
                     attendantDAO.addAttendant(attendant);
                     updateLabels();
                     alert("El evento fue guardado exitosamente", true);
