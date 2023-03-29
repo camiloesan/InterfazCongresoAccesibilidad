@@ -8,4 +8,6 @@ import java.util.List;
 public interface IEvent {
     void addEvent(Event event) throws SQLException;
     List<Event> getAllEvents() throws SQLException;
+    List<Event> getElementByName(String eventName) throws SQLException;
+    void decreaseEventSlotAvailability(int eventId) throws SQLException;
 }
