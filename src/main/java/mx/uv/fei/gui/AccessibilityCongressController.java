@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import mx.uv.fei.logic.Attendant;
+import mx.uv.fei.logic.AttendantDAO;
 import mx.uv.fei.logic.Event;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -137,8 +137,9 @@ public class AccessibilityCongressController {
                     attendant.setAttendantSecondLastName(textFieldAttendantSecondLastName.getText());
                     attendant.setAttendantEmail(textFieldAttendantEmail.getText());
                     attendant.setEventId(eventId);
-                    attendant.saveAttendant();
                     event.decreaseSlotAvailability(eventId);
+                    AttendantDAO attendantDAO = new AttendantDAO();
+                    attendantDAO.addAttendant(attendant);
                     updateLabels();
                     alert("El evento fue guardado exitosamente", true);
                 } catch (SQLException sqlException) {
