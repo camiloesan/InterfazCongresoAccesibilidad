@@ -1,7 +1,5 @@
 package mx.uv.fei.logic;
 
-import mx.uv.fei.dataaccess.DatabaseManager;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +17,7 @@ public class Event {
 
     public Event() {}
 
-    public void saveEvent() throws SQLException {
-        DatabaseManager databaseManager = new DatabaseManager();
-        Connection connection = databaseManager.getConnection();
-        String query = "insert into eventos(nombreEvento, quienImparte, duracion, lugar, fecha, hora, tipoEvento, cupo) values(?,?,?,?,?,?,?,?)";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, eventName);
-        statement.setString(2, speakerName);
-        statement.setInt(3, eventDuration);
-        statement.setString(4, eventLocation);
-        statement.setDate(5, java.sql.Date.valueOf(eventDate));
-        statement.setTime(6, java.sql.Time.valueOf(eventTime));
-        statement.setString(7, eventType);
-        statement.setInt(8, eventSlots);
-        statement.executeUpdate();
-        databaseManager.closeConnection();
-    }
-
-    private List<Event> resultSetToList(ResultSet resultSet) throws SQLException {
+    public List<Event> eventResultSetToList(ResultSet resultSet) throws SQLException {
         List<Event> eventList = new ArrayList<>();
         while (resultSet.next()) {
             Event event = new Event();
@@ -52,37 +33,6 @@ public class Event {
             eventList.add(event);
         }
         return eventList;
-    }
-
-    public List<Event> eventList() throws SQLException {
-        DatabaseManager databaseManager = new DatabaseManager();
-        Connection connection = databaseManager.getConnection();
-        String query = "SELECT * FROM eventos";
-        Statement statement = connection.createStatement();
-        ResultSet resultSetEvent = statement.executeQuery(query);
-        databaseManager.closeConnection();
-        return resultSetToList(resultSetEvent);
-    }
-
-    public List<Event> eventList(String eventName) throws SQLException {
-        DatabaseManager databaseManager = new DatabaseManager();
-        Connection connection = databaseManager.getConnection();
-        String query = "SELECT * FROM eventos WHERE nombreEvento=?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, eventName);
-        ResultSet resultSetEvent = statement.executeQuery();
-        databaseManager.closeConnection();
-        return resultSetToList(resultSetEvent);
-    }
-
-    public void decreaseSlotAvailability(int eventId) throws SQLException {
-        DatabaseManager databaseManager = new DatabaseManager();
-        Connection connection = databaseManager.getConnection();
-        String query = "update eventos set cupo=cupo-1 where idEvento=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, eventId);
-        preparedStatement.executeQuery();
-        databaseManager.closeConnection();
     }
 
     public int getEventSlots() {
