@@ -38,7 +38,7 @@ public class EventDAO implements IEvent {
         return event.eventResultSetToList(resultSetEvent);
     }
 
-    public List<Event> getElementByName(String eventName) throws SQLException {
+    public List<Event> getEventByName(String eventName) throws SQLException {
         DatabaseManager databaseManager = new DatabaseManager();
         Connection connection = databaseManager.getConnection();
         String query = "SELECT * FROM eventos WHERE nombreEvento=?";

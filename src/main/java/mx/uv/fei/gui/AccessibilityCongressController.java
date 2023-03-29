@@ -64,7 +64,7 @@ public class AccessibilityCongressController {
     @FXML
     private void updateLabels() throws SQLException {
         EventDAO eventDAO = new EventDAO();
-        for(Event objectEvent : eventDAO.getElementByName(listViewEvents.getSelectionModel().getSelectedItem())) {
+        for(Event objectEvent : eventDAO.getEventByName(listViewEvents.getSelectionModel().getSelectedItem())) {
             labelEditEventSpeaker.setText(objectEvent.getSpeakerName());
             labelEditEventDuration.setText(String.valueOf(objectEvent.getEventDuration()));
             labelEditEventLocation.setText(objectEvent.getEventLocation());
