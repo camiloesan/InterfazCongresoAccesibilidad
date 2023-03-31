@@ -89,7 +89,7 @@ public class AccessibilityCongressController {
         updateLabels();
     }
     @FXML
-    private void alert(String message, boolean isSuccessful) {
+    private void alert(String message, boolean isSuccessful) { //needs refactoring
         Alert alert;
         if (isSuccessful) {
             alert = new Alert(Alert.AlertType.CONFIRMATION);
